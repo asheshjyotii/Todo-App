@@ -16,7 +16,9 @@ while service:
     add -> to add a todo
     show -> to show todo list
     edit -> to edit any particular todo
-    exit -> to show the todo list & exit the app\n-> ''')
+    exit -> to show the todo list & exit the app
+    complete -> to complete a todo\n
+-> ''')
     userInput = userInput.strip(" ")
     match userInput:
         case 'add':
@@ -33,9 +35,6 @@ while service:
                 print(f"Enter {index+1} to change {x}")
 
             userInput = int(input("-> "))
-            print("length: ",len(todos))
-            for x in todos:
-                print(x)
             if userInput <=0 or userInput > len(todos):
                 print("Invalid choice.")
                 continue
@@ -44,6 +43,15 @@ while service:
             todos [userInput-1] = newTodo
 
             print("The new todo list:")
+            for x in todos:
+                print(x)
+        case 'complete':
+            for index,x in enumerate(todos):
+                print(f"Enter {index+1} to mark '{x}' as complete")
+
+            userInput = int(input("-> "))
+            todos.pop(userInput-1)
+            print("The updated list:")
             for x in todos:
                 print(x)
         case 'exit':
