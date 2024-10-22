@@ -1,13 +1,8 @@
 '''
 Todo:
-switch statement
-add 
-show
-edit
-exit
+Change the saving to a text file
 '''
-
-todos = []
+todos =[]
 
 service = True
 
@@ -24,37 +19,56 @@ while service:
         case 'add':
             userInput = input("Enter the todo: ")
             todo = userInput.capitalize()
-            todos.append(todo)
+            todos.append(todo+"\n")
+            with open('todosData.txt','w') as f:
+                f.writelines(todos)
             print(f"Added '{todo}' to the list...")
         case 'show':
             print("The todo List:")
-            for index,x in enumerate(todos):
-                print(f"{index+1}.{x}")
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            
+            for index,x in enumerate(show_todos):
+                print(f"{index+1}.{x.rstrip("\n")}")
         case 'edit':
-            for index,x in enumerate(todos):
-                print(f"Enter {index+1} to change {x}")
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            for index,x in enumerate(show_todos):
+                print(f"Enter {index+1} to change {x.rstrip("\n")}")
 
             userInput = int(input("-> "))
             if userInput <=0 or userInput > len(todos):
                 print("Invalid choice.")
                 continue
 
-            newTodo = input("Enter the new todo: ")
-            todos [userInput-1] = newTodo
-
+            newTodo = input("Enter the new todo: ").capitalize()
+            todos [userInput-1] = newTodo+"\n"
+            with open('todosData.txt','w') as f:
+                f.writelines(todos)
             print("The new todo list:")
-            for x in todos:
-                print(x)
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            for index,x in enumerate(show_todos):
+                print(f"{index+1}. {x.rstrip("\n")}")
         case 'complete':
-            for index,x in enumerate(todos):
-                print(f"Enter {index+1} to mark '{x}' as complete")
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            for index,x in enumerate(show_todos):
+                print(f"Enter {index+1} to mark '{x.rstrip("\n")}' as complete")
 
             userInput = int(input("-> "))
-            todos.pop(userInput-1)
+            show_todos.pop(userInput-1)
+            with open('todosData.txt','w') as f:
+                f.writelines(show_todos)
             print("The updated list:")
-            for x in todos:
-                print(x)
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            for index,x in enumerate(show_todos):
+                print(f"{index+1}.{x.rstrip("\n")}")
         case 'exit':
-            for x in todos:
-                print(x)
+            print("Incomplete todos:")
+            with open('todosData.txt','r') as f:
+                show_todos = f.readlines()
+            for index,x in enumerate(show_todos):
+                print(f"{index+1}. {x.rstrip("\n")}")
             break
