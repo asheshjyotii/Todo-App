@@ -1,2 +1,3 @@
 venv
-todosData.txt
+.idea/
+webapp/src/__pycache__/
