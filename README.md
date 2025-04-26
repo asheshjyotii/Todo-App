@@ -1,4 +1,4 @@
-# 📝 Streamlit To-Do App
+## 📝 Streamlit To-Do App
 
 <p align="center">
   <img src="img/todo_webapp.png" alt="App Screenshot" width="700" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
