@@ -1,4 +1,7 @@
-FILE_PATH = "../data/todos.txt"
+import os
+current_dir = os.path.dirname(__file__)
+FILE_PATH = os.path.abspath(os.path.join(current_dir, '..', 'data', 'todos.txt'))
+
 
 def read_todos(file_path=FILE_PATH):
     """
